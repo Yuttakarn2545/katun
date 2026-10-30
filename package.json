@@ -1,0 +1,58 @@
+{
+  "name": "katun",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Katun Studio: ระบบทำวิดีโอ AI แบบ 2D (บท → เสียง → ปากขยับ → MP4) พร้อม MCP สำหรับ Claude",
+  "type": "module",
+  "bin": {
+    "katun": "bin/katun.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node bin/katun.js app",
+    "build": "vite build --config packages/app/vite.config.ts",
+    "dev:web": "vite --config packages/app/vite.config.ts",
+    "katun": "node bin/katun.js",
+    "make": "node bin/katun.js make",
+    "render": "node bin/katun.js render",
+    "studio": "node bin/katun.js studio",
+    "mcp": "node bin/katun.js mcp",
+    "doctor": "node bin/katun.js doctor",
+    "test:mcp": "tsx scripts/mcp-smoke-test.ts",
+    "test:live": "tsx scripts/live-bridge-test.ts",
+    "test:timeline": "tsx scripts/m2-timeline-test.ts",
+    "test:audio": "tsx scripts/m3-audio-test.ts",
+    "test:components": "tsx scripts/m4-components-test.ts",
+    "test:acting": "tsx scripts/m4-acting-test.ts",
+    "test:export": "tsx scripts/m5-export-test.ts",
+    "test": "npm run test:timeline && npm run test:live && npm run test:audio && npm run test:components && npm run test:acting && npm run test:export && npm run test:mcp",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run build && npm test"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@remotion/cli": "4.0.539",
+    "@remotion/google-fonts": "4.0.539",
+    "@remotion/player": "4.0.539",
+    "@tailwindcss/vite": "4.3.3",
+    "@vitejs/plugin-react": "6.1.2",
+    "lucide-react": "1.63.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "4.0.539",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
+    "vite": "8.3.5",
+    "zod": "4.5.4",
+    "zustand": "5.0.16"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

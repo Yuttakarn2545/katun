@@ -1,0 +1,13 @@
+node_modules/
+.env
+projects/*/build/
+projects/*/out/
+tools/rhubarb/
+projects/smoke-test/
+.cache/
+assets/katun.ico
+packages/app/dist/
+
+# user content (episodes, media, trash) — not part of the source
+projects/
+*.mp4

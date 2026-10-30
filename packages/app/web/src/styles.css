@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ธีมมืดแบบโปรแกรมตัดต่อ (สีหลักใช้ผ่าน utility เช่น bg-panel text-muted) */
+@theme {
+  --font-sans: "Leelawadee UI", "Noto Sans Thai", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Mono", Consolas, monospace;
+  --color-app: #0f1115;
+  --color-panel: #171a21;
+  --color-panel-2: #1f232c;
+  --color-panel-3: #2a2f3a;
+  --color-line: #2c313c;
+  --color-line-strong: #3b4250;
+  --color-fg: #e7e9ee;
+  --color-muted: #9aa1b2;
+  --color-faint: #6b7283;
+  --color-accent: #22d3c5;
+  --color-accent-ink: #062a27;
+  --color-danger: #f26b6b;
+  --color-ok: #4ade80;
+  --color-warn: #fbbf24;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--color-app);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color-scheme: dark;
+}
+
+/* คลาสส่วนประกอบ (Tailwind 4 ต้องประกาศด้วย @utility ถึงจะ @apply ต่อกันได้) */
+@utility btn {
+  @apply inline-flex h-8 items-center justify-center gap-1.5 rounded-md border border-line bg-panel-2 px-3 text-[13px] text-fg transition-colors hover:border-line-strong hover:bg-panel-3 disabled:cursor-progress disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn border-accent bg-accent font-semibold text-accent-ink hover:border-accent hover:bg-accent hover:brightness-110;
+}
+@utility btn-ghost {
+  @apply btn border-transparent bg-transparent hover:border-transparent hover:bg-panel-3;
+}
+@utility btn-icon {
+  @apply btn-ghost w-8 px-0;
+}
+@utility input {
+  @apply h-8 w-full rounded-md border border-line bg-app px-2.5 text-[13px] text-fg outline-none placeholder:text-faint focus:border-accent disabled:opacity-60;
+}
+@utility label {
+  @apply mb-1 block text-[12px] text-muted;
+}
+@utility chip {
+  @apply inline-flex h-7 items-center rounded-full border border-line px-3 text-[12px] text-muted hover:text-fg;
+}
+@utility chip-on {
+  @apply chip border-accent/60 bg-accent/15 text-accent hover:text-accent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2f3542;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+input[type="range"] {
+  accent-color: var(--color-accent);
+}
