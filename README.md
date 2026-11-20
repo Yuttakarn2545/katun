@@ -1,5 +1,40 @@
 # Katun Studio
 
+**Turn a script into a lip-synced 2D cartoon video — by hand in a desktop editor, or by handing the whole job to Claude over MCP.**
+
+![Episodes produced with Katun](docs/media/episodes.png)
+
+**44** MCP tools · **20+** episodes produced · **7** automated test suites · runs fully on your machine
+
+## What it does
+
+Script → voice (Thai/English TTS or your own recording) → automatic lip sync → subtitles + music → MP4, WebM, GIF or SRT.
+
+![Katun editor with a real episode open](docs/media/editor.png)
+
+## Why it is interesting
+
+- **An agent can make a whole video.** The MCP server covers projects, scenes, voices, subtitles, components, rendering and the open app window. `preview_frame` sends rendered frames back, so the agent checks its own output before it renders.
+- **People and agents edit the same project safely.** The editor picks up agent changes live, never replaces unsaved work, and refuses a save if the file changed on disk underneath it.
+- **One schema for everything.** A single zod schema is shared by the editor, CLI, renderer and MCP server.
+- **Used for real work.** I produced 20+ vertical Thai story episodes across several series with it.
+
+```mermaid
+flowchart LR
+  U["Prompt: make a 20s vertical clip"] --> C[Claude Desktop / Claude Code]
+  C -->|MCP stdio| M[Katun MCP server]
+  M --> P[project.json]
+  M --> F[preview_frame]
+  M --> R[Remotion render]
+  P <-->|live sync| E[Katun editor]
+```
+
+**Tech:** TypeScript · React 19 · Vite · Tailwind · Remotion · MCP SDK · Anthropic SDK · Azure Neural TTS · Rhubarb Lip Sync
+
+---
+
+*Full documentation below is in Thai.*
+
 โปรแกรมทำวิดีโอการ์ตูน 2D ด้วย AI: เขียนบท → สร้างเสียงพูด (หรืออัดเอง) → ตัวละครขยับปากตามเสียง → ซับไตเติล + เพลงประกอบ → MP4
 
 ใช้ได้ 3 ทาง:
