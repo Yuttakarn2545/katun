@@ -29,6 +29,20 @@ flowchart LR
   P <-->|live sync| E[Katun editor]
 ```
 
+## Verification
+
+`npm run check` runs type-checking, the production build and 7 test suites against throwaway projects. Latest run (2026-11-20, Windows 11, Node 24): **158 / 158 checks passed**.
+
+| Suite | What it proves | Checks |
+|---|---|---|
+| `test:mcp` | Every MCP tool end-to-end over stdio: create, edit, voice (Windows TTS), music, components, render, bundle | 52 / 52 |
+| `test:audio` | Speed/pitch, noise reduction, EQ, reverb, compressor, export loudness hits -14 ±1 LUFS (measured from the file) | 29 / 29 |
+| `test:export` | All 5 formats are real files (MP4/WebM/GIF/MP3/WAV), render queue and cancel, `.katun` round-trip, zip path-traversal rejection | 27 / 27 |
+| `test:timeline` | Drag, ripple, trim, split, solo/mute, undo, markers | 21 / 21 |
+| `test:components` | Keyframes, easing, presets, nested components, cycle rejection | 17 / 17 |
+| `test:live` | Agent edits sync to the open editor; unsaved user work is never overwritten; stale saves and cross-site requests are rejected | 6 / 6 |
+| `test:acting` | Thai word segmentation for karaoke subtitles; every expression, gesture and transition renders | 6 / 6 |
+
 **Tech:** TypeScript · React 19 · Vite · Tailwind · Remotion · MCP SDK · Anthropic SDK · Azure Neural TTS · Rhubarb Lip Sync
 
 ---
